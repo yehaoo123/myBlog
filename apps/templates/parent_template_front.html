@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/bootstrap-4.0/css/bootstrap.css">
+    <style>
+        #logo1:hover {
+            cursor: pointer;
+        }
+        #homepage_menu:hover {
+            cursor: pointer;
+        }
+        #about_menu:hover {
+            cursor: pointer;
+        }
+    </style>
+    {% block css %}{% endblock %}
+    {% block js_head %}{% endblock %}
+</head>
+<body>
+    {% block content-front %}{% endblock %}
+    <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-light p-0" style="background-color: #0099FF!important;height: 52px;">
+        <a id="logo1" href="#header_blank" class="navbar-brand ml-xl-5 ml-lg-5 ml-md-5 ml-sm-5 ml-4 pl-2 pb-0" >
+            <img src="/static/img/logo.jpg" height="43px" >
+        </a>
+        <button class="navbar-toggler mr-4" data-toggle="collapse" data-target="#navbar-content" style="padding: 0.15rem 0.65rem;">
+            <span class="navbar-toggler-icon" style="width: 1.3em; height: 1.3em;"></span>
+        </button>
+        <div id="navbar-content" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto mr-xl-5 mr-lg-5 mr-md-5 mr-sm-5 mr-0" >
+                <li class="nav-item mr-xl-4 mr-lg-4 mr-md-4 mr-sm-4 mr-0">
+                    <a id="homepage_menu" href="/" class="nav-link pl-3" style="background-color: #0099FF">
+                        <img src="/static/img/homepage.jpg" height="23px" style="margin-top: 4px;opacity: 0.8;">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a id="about_menu" class="nav-link pl-3" style="background-color: #0099FF">
+                        <img src="/static/img/about.jpg" height="30px" style="margin-top: -2px;opacity: 0.8;">
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="header_blank" style="height: 52px"></div>
+
+    {% block content %} {% endblock %}
+
+
+    <script type="text/javascript" src="/static/jQuery-3.3.1/jQuery-3.3.1.js"></script>
+    <script type="text/javascript" src="/static/popper-1.12/popper-1.12.9.js"></script>
+    <script type="text/javascript" src="/static/bootstrap-4.0/js/bootstrap.js"></script>
+    {% block js_overall %}{% endblock %}
+    <script>
+        $(function () {
+           $('#homepage_menu').mouseover(function () {
+              $(this).find('img').css('opacity','1');
+           });
+           $('#homepage_menu').mouseout(function () {
+              $(this).find('img').css('opacity','0.8');
+           });
+           $('#about_menu').mouseover(function () {
+              $(this).find('img').css('opacity','1');
+           });
+           $('#about_menu').mouseout(function () {
+              $(this).find('img').css('opacity','0.8');
+           });
+           {% block js_inner %}{% endblock %}
+        });
+    </script>
+</body>
+</html>

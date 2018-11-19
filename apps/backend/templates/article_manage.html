@@ -1,0 +1,154 @@
+{% extends 'parent_template_backend.html' %}
+
+{% block title %}Backend Manage-Article Manage{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/table_plugin/css/normalize.css">
+    <link rel="stylesheet" href="/static/table_plugin/css/htmleaf-demo.css">
+    <link rel="stylesheet" href="/static/table_plugin/css/style.css">
+    <link rel="stylesheet" href="/static/table_plugin/css/basictable.css">
+    <link rel="stylesheet" href="/static/confirm_plugin/css/naranja.min.css">
+    <style>
+        table {
+            margin: 0;
+        }
+
+        table tr td {
+            color: #504e4e !important;
+        }
+
+        #tool_top {
+            z-index: 998 !important;
+            height: 50px;
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #c5c5c5;
+        }
+
+        td span a {
+            color: #504e4e;
+        }
+
+        .naranja-text-and-title {
+            width: 100%;
+        }
+
+        .naranja-notification-box {
+            z-index: 2;
+        }
+    </style>
+{% endblock %}
+
+{% block js_head %}{% endblock %}
+
+{% block content %}
+    <div id="tool_top">
+        <div class="row h-100 justify-content-end">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-4 align-self-center"
+                 style="text-align: center; overflow: hidden;">
+                <img src="/static/img/logo3.jpg" style="height: 44px;">
+            </div>
+        </div>
+    </div>
+    <div>
+        <table id="article_table">
+            <thead>
+            <tr>
+                <th>文章ID</th>
+                <th>文章名</th>
+                <th>标签</th>
+                <th>更新时间</th>
+                <th>修改时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in article %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    {% if item.article_name|length > 10 %}
+                        <td data-placement="bottom" title="{{ item.article_name }}" data-toggle="tooltip"><a target="_blank" href="/blog/article-{{ item.id }}.html">{{ item.article_name|truncatechars:"10" }}</a>
+                        </td>
+                    {% else %}
+                        <td><a target="_blank" href="/blog/article-{{ item.id }}.html">{{ item.article_name }}</a></td>
+                    {% endif %}
+                    <td>{{ item.label_id }}</td>
+                    <td>{{ item.create_time|date:"Y-m-d H:i:s" }}</td>
+                    <td>{{ item.modify_time|date:"Y-m-d H:i:s" }}</td>
+                    <td><a class="edit" target="_blank" href="/manage/edit-{{ item.id }}/">编辑</a> | <a class="del" article-target="{{ item.id }}" href="javascript:void(0);">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-end align-items-center" style="height: 54px">
+            <div class="col-xl-2 pl-xl-4 col-lg-3 pl-lg-5 col-md-3 pl-md-4 col-sm-4 pl-sm-0 col-7 pl-3">
+                {{ page|safe }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content2 %}{% endblock %}
+
+{% block js_all %}
+    <script type="text/javascript" src="/static/table_plugin/js/jquery.basictable.min.js"></script>
+    <script type="text/javascript" src="/static/jQuery-cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/confirm_plugin/js/naranja.js"></script>
+    <script>
+        $(function () {
+            $('#article_table').basictable({});
+            $('[data-toggle="tooltip"]').tooltip();
+            $(".del").click(function () {
+                var click_jobj = $(this);
+                naranja().error({
+                    title: '确认删除？', // <- required
+                    text: '此操作不可逆，请谨慎操作', // <- required
+                    icon: true, // <- unrequired, default true,
+                    timeout: 'keep', // <- unrequired, default 3000 miliseconds
+                    buttons: [
+                        {
+                            text: '确定',
+                            click: function (e) {
+                                $.ajax({
+                                    url: '/manage/delete/',
+                                    type: 'POST',
+                                    data: {'article_id': click_jobj.attr('article-target')},
+                                    headers: {'X-CSRFtoken': $.cookie('csrftoken')},
+                                    dataType: 'JSON',
+                                    success: function (res_dict) {
+                                        if (res_dict['state']) {
+                                            click_jobj.parent().parent().parent().fadeOut('normal');
+                                            e.closeNotification();
+                                            naranja().success({
+                                                title: '删除成功',
+                                                text: '文章已被删除',
+                                                timeout: '1500',
+                                            });
+                                        }
+                                    }
+                                });
+                                // click event close notifiaction
+                                // unless you use preventClose method
+                                {#e.preventClose();#}
+                                // if you want close notifiaction
+                                // manually, use closeNotification
+                                {#e.closeNotification()#}
+                            }
+                        },
+                        {
+                            text: '取消',
+                            click: function (e) {
+                                e.closeNotification();
+                            }
+                        }
+                    ]
+                });
+            });
+
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'parent_template_front.html' %}
+
+{% block title %}{{ article_info.label_id }}-Articles Sharing.{% endblock %}
+
+{% block css %}
+    <style>
+        body,html {
+            height: 100%;
+        }
+        body {
+            background-color: ghostwhite;
+        }
+        .article-title {
+            height: fit-content;
+            font-size: 2rem;
+            font-weight: 600;
+            color: black;
+        }
+        .article-create-time {
+            font-size: 0.9rem;
+        }
+        hr {
+            margin-top: 0.2rem;
+        }
+        pre {
+            background-color: aliceblue;
+            border-radius: 6px;
+        }
+        p {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        blockquote {
+            border-left: 4px solid #c3c3c3;
+            padding-left: 6px;
+        }
+    </style>
+{% endblock %}
+
+{% block js_head %}{% endblock %}
+
+{% block content-front %}{% endblock %}
+
+{% block content %}
+    <div class="">
+        <div class="container" >
+            <div class="row justify-content-center" >
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9" style="background-color: white;height: fit-content;min-height: 800px;">
+                    <div class='article-title mt-1 text-xl-center text-lg-center text-md-center text-sm-center text-left'>{{ article_info.article_name }}</div>
+                    <div class="float-right"><span class="badge badge-pill badge-primary" style="font-size: 0.6rem">{{ article_info.label_id }}</span></div>
+                    <br/>
+                    <div class="article-create-time text-right mb-2 float-right">{{ article_info.create_time|date:"Y-m-d" }}</div>
+                    <br/><hr/>
+                    <div id="article_content">{{ article_content.article_content|safe }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment %}<div>{{ article_info.article_name }}</div>
+    <div>{{ article_info.create_time|date:"Y-m-d" }}</div>
+    <div>{{ article_info.modify_time|date:"Y-m-d" }}</div>
+    <div>{{ article_info.label_id }}</div>
+    <div>{{ article_content.article_content|safe }}</div>{% endcomment %}
+
+{% endblock %}
+
+{% block js_overall %}{% endblock %}
+
+{% block js_inner %}
+      $("#about_menu").attr('href', '/#homepage_footer');
+{% endblock %}

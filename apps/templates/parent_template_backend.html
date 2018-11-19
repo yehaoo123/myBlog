@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/sidebar_plugin/css/normalize.css" />
+    <link rel="stylesheet" href="/static/sidebar_plugin/css/demo.css" />
+    <link rel="stylesheet" href="/static/sidebar_plugin/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/sidebar_plugin/css/menu_sideslide.css" />
+    <link rel="stylesheet" href="/static/bootstrap-4.0/css/bootstrap.css" />
+    <style>
+        .icon-list a {
+            padding: 0.6rem;
+        }
+        .content::before {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+    {% block css %}{% endblock %}
+    {% block js_head %}{% endblock %}
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container-slide bg-light">
+        <div class="menu-wrap" style="width: 70%;max-width: 290px;">
+            <nav class="menu">
+                <div class="icon-list pl-xl-3 pl-lg-3 pl-md-3 pl-sm-3 pl-1">
+{#                    <a href="/manage/"><i class="fa fa-fw fa-flag-o"></i><span>个人管理</span></a>#}
+                    <a href="/manage/articles/"><i class="fa fa-fw fa-star-o"></i><span>文章管理</span></a>
+{#                    <a href="/manage/labels/"><i class="fa fa-fw fa-paperclip"></i><span>标签管理</span></a>#}
+                    <a href="/manage/publish/"><i class="fa fa-fw fa-pencil-square-o"></i><span>文章发布</span></a>
+                    <a href="/manage/exit/"><i class="fa fa-fw fa-sign-out"></i><span>退出登录</span></a>
+                </div>
+            </nav>
+            <button class="close-button" id="close-button">Close Menu</button>
+        </div>
+
+        <button class="menu-button m-xl-4 m-lg-3 m-md-2 m-sm-2 m-2" id="open-button" style="outline: none;">Open Menu</button>
+
+        <div class="content-wrap">
+            <div class="content bg-light">
+                {% block content %}
+
+                {% endblock %}
+
+                <!-- Related demos -->
+            </div>
+
+        </div><!-- /content-wrap -->
+    </div><!-- /container-slide -->
+    {% block content2 %}{% endblock %}
+
+    <script type="text/javascript" src="/static/jQuery-1.12.4/jQuery-1.12.4.js"></script>
+    <script type="text/javascript" src="/static/popper-1.12/popper-1.12.9.js"></script>
+    <script type="text/javascript" src="/static/bootstrap-4.0/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/sidebar_plugin/js/classie.js"></script>
+    <script type="text/javascript" src="/static/sidebar_plugin/js/main.js"></script>
+    {% block js_all %}{% endblock %}
+
+</body>
+</html>

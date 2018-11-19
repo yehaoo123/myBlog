@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh" style="height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login.</title>
+    <link rel="stylesheet" href="/static/bootstrap-4.0/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/fontawesome-5.5.0/css/all.css">
+    <style>
+        .intro_header {
+            height: 100%;
+            background: url("/static/login/login_back.jpg") no-repeat center center;
+            background-size: cover;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            box-sizing: border-box;
+        }
+        #logo {
+            position: absolute;
+            bottom: 10px;
+            right: 5%;
+            {#margin-left: -82.5px;#}
+            height: 120px;
+            z-index: 2;
+        }
+        .custom-control-label::before {
+            top: 0.3rem;
+        }
+        .input-invalid {
+            display: none;
+            position: absolute;
+            top: 2px;
+            right: 100%;
+            margin-right: 8px;
+            width: max-content;
+            text-align: center;
+            height: inherit;
+            background-color: black;
+            color: #fffbfb;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            box-shadow: 1px 1px 1px #555555;
+        }
+        .input-invalid::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            margin-top: -5px;
+            height: 0;
+            width: 0;
+            border: 5px solid;
+            border-top-color: transparent ;
+            border-bottom-color: transparent ;
+            border-right-color: transparent ;
+            border-left-color: black;
+        }
+    </style>
+</head>
+<body style="overflow: auto;height: 100%">
+<!-- Full sccreen, 为了让高度100%生效，需要给所有的父元素高度设为100% -->
+
+    <img id="logo" src="/static/login/logo.jpg">
+    <div class="intro_header">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-8 h-75" style="background-color: white;min-height: 360px;max-height: 450px;border-radius: 5px;box-shadow: 2px 2px 4px #888888">
+
+                    <div class="row justify-content-center align-items-center mt-xl-1 mt-lg-1 mt-md-1 mt-sm-1 mt-2" style="height: 28%">
+                        <img src="/static/login/head_img.jpg" style="height: 70px;width: 70px;border-radius: 100%;border: 2px solid #548cd5">
+                    </div>
+
+                    <form id="login_form" class="needs-validation pl-2 pr-2" method="post" novalidate>
+                        <div class="form-row form-group justify-content-center">
+                            <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10 col-11">
+
+                                <div class="input-group input-group-sm" style="position: relative;">
+                                        <input id="username" name="username" type="text" class="form-control" placeholder="用户名" aria-label="username" aria-describedby="basic-addon0" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon0"><i class="fas fa-user"></i></span>
+                                        </div>
+                                        <div class="input-invalid" data-null="用户名不能为空" data-invalid="用户名格式错误">
+                                            用户名不能为空
+                                        </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row form-group justify-content-center pt-1">
+                            <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10 col-11">
+
+                                <div class="input-group input-group-sm" style="position: relative;">
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="密码" aria-label="password" aria-describedby="basic-addon1" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-lock"></i></span>
+                                    </div>
+                                    <div class="input-invalid" data-null="密码不能为空" data-invalid="密码格式错误" data-error="用户名或密码错误">
+                                        密码不能为空
+                                    </div>
+                                   {% comment %} <div class="input-invalid">
+                                        用户名或密码错误
+                                    </div>{% endcomment %}
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row form-group justify-content-center pt-1 mb-2">
+                            <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10 col-11">
+                                <div class="form-row justify-content-around">
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-4 pl-0" style="position: relative;">
+
+                                        <input id="check_code" name="identify_code" type="text" class="form-control form-control-sm" placeholder="验证码" required>
+                                        <div class="input-invalid" data-null="验证码不能为空" data-error="验证码错误">
+                                            验证码不能为空
+                                        </div>
+                                      {% comment %}  <div class="input-invalid">
+                                            验证码错误
+                                        </div>{% endcomment %}
+                                        
+                                    </div>
+
+                                    <div class="col-xl-5 col-lg-6 col-md-8 col-sm-7 col-8">
+                                        <img id="check_img" src="/manage/check_code/" style="height: 40px;width: 100px;border: 1px solid powderblue">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-row justify-content-center">
+                            <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10 col-11">
+                               {% comment %} <div class="custom-control custom-checkbox form-check">
+                                    <input type="checkbox" class="custom-control-input" id="nosign" required>
+                                    <label class="custom-control-label" for="nosign" style="font-size: 12px">七天内免登陆</label>
+                                </div>{% endcomment %}
+                                <div class="custom-control custom-checkbox">
+                                    <input name="nosign" type="checkbox" class="custom-control-input" id="nosign" value="yes">
+                                    <label class="custom-control-label font-weight-light" style="font-size: 13px;" for="nosign">七天内免登陆</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-row justify-content-center">
+                            <button id="submit_button" class="btn btn-primary pt-1 pb-1" style="width: 50%;" type="button">登录</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="/static/jQuery-1.12.4/jQuery-1.12.4.js"></script>
+    <script type="text/javascript" src="/static/jQuery-cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/popper-1.12/popper-1.12.9.js"></script>
+    <script type="text/javascript" src="/static/bootstrap-4.0/js/bootstrap.js"></script>
+    <script>
+        $(function () {
+
+            $("#check_img").click(function () {
+                var src_value = $(this).attr('src');
+                $(this).attr('src', src_value+'?');
+            });
+            $("#submit_button").click(function () {
+                $("#login_form").addClass("was-validated");
+                var count = 0;
+                var num = $("input[type!='checkbox']").length;
+                $("input[type!='checkbox']").each(function () {
+                    if ($(this).val() === '') {
+                        var tooltips = $(this).siblings().filter(".input-invalid");
+                        var null_info = tooltips.attr("data-null");
+                        tooltips.text(null_info);
+                        tooltips.fadeIn("fast");
+                        tooltips.delay(1500).fadeOut("normal");
+                    } else {
+                        count += 1;
+                    }
+                });
+                if (count === num) {
+                    $.ajax({
+                        url: '/manage/login/',
+                        type: 'POST',
+                        data: $("#login_form").serialize(),
+                        headers: {'X-CSRFtoken': $.cookie('csrftoken') },
+                        dataType: 'JSON',
+                        success: function (res_dict) {
+                            var code = res_dict['state'];
+                            switch (code) {
+                                case '303':
+                                    console.log("验证码错误");
+                                    var tooltips = $("#check_code").siblings().filter(".input-invalid");
+                                    var error_info = tooltips.attr("data-error");
+                                    tooltips.text(error_info);
+                                    // tooltips.css('display', 'block');
+
+                                    tooltips.fadeIn("fast");
+                                    tooltips.delay(1500).fadeOut("normal");
+
+                                    break;
+                                case '404':
+                                    console.log("用户名格式错误");
+                                    var tooltips = $("#username").siblings().filter(".input-invalid");
+                                    var invalid_info = tooltips.attr("data-invalid");
+                                    tooltips.text(invalid_info);
+
+                                    tooltips.fadeIn("fast");
+                                    tooltips.delay(1500).fadeOut("normal");
+
+                                    break;
+                                case '405':
+                                    console.log("密码格式错误");
+                                    var tooltips = $("#password").siblings().filter(".input-invalid");
+                                    var invalid_info = tooltips.attr("data-invalid");
+                                    tooltips.text(invalid_info);
+
+                                    tooltips.fadeIn("fast");
+                                    tooltips.delay(1500).fadeOut("normal");
+
+                                    break;
+                                case '406':
+                                    console.log("用户名和密码格式错误");
+                                    var tooltips = $(".form-control").siblings().filter("[data-invalid]");
+                                    tooltips.each(function () {
+                                        var invalid_info = $(this).attr("data-invalid");
+                                        $(this).text(invalid_info);
+
+                                        $(this).fadeIn("fast");
+                                        $(this).delay(1500).fadeOut("normal");
+
+                                    });
+                                    break;
+                                case '505':
+                                    console.log("用户名或密码错误");
+                                    var tooltips = $("#password").siblings().filter(".input-invalid");
+                                    var error_info = tooltips.attr("data-error");
+                                    tooltips.text(error_info);
+
+                                    tooltips.fadeIn("fast");
+                                    tooltips.delay(1500).fadeOut("normal");
+
+                                    break;
+                                case '200':
+                                    setTimeout(function () {
+                                        location.href = res_dict['data'];
+                                    },1000);
+                                    break;
+                            }
+                        }
+                    });
+                }
+            });
+            //
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+{% extends 'parent_template_front.html' %}
+
+{% block title %}Welcome to Hacker ye's Blog.{% endblock %}
+
+{% block css %}
+    <style>
+        .carousel-inner .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+        #preloader {
+            position: fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background-color:#fff; /* change if the mask should have another color then white */
+            z-index:1031; /* makes sure it stays on top */
+        }
+        #status {
+            width:200px;
+            height:200px;
+            position:absolute;
+            left:50%; /* centers the loading animation horizontally one the screen */
+            top:50%; /* centers the loading animation vertically one the screen */
+            background-image: url("/static/homepage/status.gif"); /* path to your loading animation */
+            background-repeat:no-repeat;
+            background-position:center;
+            margin:-100px 0 0 -100px; /* is width and height divided by two */
+        }
+        .card-header-2 {
+            padding: 0.6rem 1.25rem;
+            background-color: #8ccaf58a;
+        }
+        .card-title-2 {
+            font-size: 1.16rem;
+            font-weight: 600;
+        }
+        .card-body-2 {
+            padding: 0.6rem 1.25rem;
+        }
+        .card-body-2 .card-text-2 {
+            font-size: 0.9rem;
+        }
+        .card-body-2 .card-time {
+            font-size: 0.9rem;
+            float: right;
+        }
+        .carousel-item-h {
+            height: 300px;
+        }
+        .card-body-2 .card-link-2 {
+            font-size: 0.8rem;
+            float: right;
+        }
+        #homepage_footer {
+            height: 240px;
+            background-color: powderblue;
+        }
+        .homepage-footer-contact {
+            height: 220px;
+        }
+        .footer-contact {
+            font-size: 26px;
+            font-weight: 600;
+        }
+        .footer-contact-link {
+            font-size: 15px;
+            font-weight: 100;
+        }
+        .footer-map {
+            height: 210px;
+            margin-top: 5px;
+            overflow: auto;
+        }
+        .footer-img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        @media (max-width: 576px) {
+            .footer-img {
+                object-fit: cover;
+            }
+            .footer-contact {
+                font-size: 22px;
+            }
+            .footer-contact-link {
+                font-size: 13px;
+            }
+            #homepage_footer {
+                height: 150px;
+            }
+            .footer-map-p {
+                padding-left: 0;
+                padding-right: 6px;
+            }
+            .footer-map {
+                height: 117px;
+                overflow: auto;
+                {#object-fit: cover;#}
+            }
+            .homepage-footer-contact {
+                height: 130px;
+            }
+            #sidebar {
+                font-size: 0.3rem !important;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            .list-group-item {
+                padding: 0.2rem 0.7rem;
+            }
+            .card-header {
+                padding: 0.2rem 0.8rem;
+            }
+            #article-list {
+                font-size: 0.5rem !important;
+            }
+            .card-body-2 {
+                padding: 0.3rem 0.6rem;
+            }
+            .carousel-item-h {
+                height: 230px;
+            }
+            .carousel-inner .carousel-item img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+            .card-body-2 .card-text-2 {
+                font-size: 0.7rem;
+            }
+            .card-body-2 .card-time {
+                font-size: 0.6rem;
+            }
+            .card-body-2 .card-link-2 {
+                font-size: 0.6rem;
+            }
+            .page-link {
+                padding: 0.1rem 0.3rem;
+            }
+            .card-header-2 {
+                padding: 0.1rem 0.8rem;
+                background-color: #8ccaf58a;
+            }
+            .card-title-2 {
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+        }
+
+    </style>
+{% endblock %}
+
+{% block js_head %}{% endblock %}
+
+{% block content-front %}
+    <div id="preloader">
+		<div id="status"></div>
+	</div>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="carousel slide" id="carousel_homepage">
+        <div class="carousel-inner">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel_homepage" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel_homepage" data-slide-to="1"></li>
+                <li data-target="#carousel_homepage" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-item active carousel-item-h">
+                <img class="d-block w-100" src="/static/homepage/carousel_img/kaka.jpg" alt="first">
+            </div>
+            <div class="carousel-item carousel-item-h">
+                <img class="d-block w-100" src="/static/homepage/carousel_img/timg.jpg" alt="first">
+            </div>
+            <div class="carousel-item carousel-item-h">
+                <img class="d-block w-100" src="/static/homepage/carousel_img/yehao.jpg" alt="first">
+            </div>
+            <a href="#carousel_homepage" class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a href="#carousel_homepage" class="carousel-control-next" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="sidebar" class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-4" style="background-color: #bfeff5">
+                <div class="list-group mt-2 mb-1">
+                    {% if active == 'all' %}
+                        <a href="/" class="list-group-item list-group-item-action active">All</a>
+                    {% else %}
+                        <a href="/" class="list-group-item list-group-item-action">All</a>
+                    {% endif %}
+                </div>
+                {% for i in label_classify %}
+                <div id="according{{ forloop.counter }}">
+                    <div class="card mb-1">
+                        <div class="card-header"><a href="#collapse-{{ forloop.counter }}" data-toggle="collapse">{{ i.name }}</a></div>
+                        {% if show == i.name %}
+                        <div class="collapse show" id="collapse-{{ forloop.counter }}" data-parent="#according">
+                        {% else %}
+                        <div class="collapse" id="collapse-{{ forloop.counter }}" data-parent="#according">
+                        {% endif %}
+                            <div class="list-group">
+                                {% for j in label %}
+                                    {% if j.classify_id == i.name %}
+                                        {% if active == j.id %}
+                                        <a href="/blog/classify-{{ j.id }}-page-1" class="list-group-item list-group-item-action active">{{ j.label_name }}</a>
+                                        {% else %}
+                                        <a href="/blog/classify-{{ j.id }}-page-1" class="list-group-item list-group-item-action">{{ j.label_name }}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div id="article-list" class="col-xl-9 col-lg-9 col-md-9 col-sm-8 col-8" style="background-color: aliceblue">
+                {% for info in article_info %}
+                <div class="card text-left mt-2">
+                    <div class="card-header article-header card-header-2">
+                        <h5 class="mb-1 card-title-2"><a target="_blank" href="/blog/article-{{ info.id }}.html">{{ info.article_name }}</a></h5>
+                    </div>
+                    <div class="card-body card-body-2">
+                        <p class="card-text mb-2 card-text-2">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {{ info.abstract }}...
+                        </p>
+                        <a target="_blank" class="card-link card-link-2 d-inline-block mr-1" href="/blog/article-{{ info.id }}.html">阅读全文</a>
+                        <div class="d-inline-block mr-xl-3 mr-lg-3 mr-md-3 mr-sm-3 mr-2 card-time">{{ info.create_time|date:"Y-m-d" }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {{ page|safe }}
+
+            </div>{% comment %}col-9{% endcomment %}
+
+        </div>  {% comment %}row{% endcomment %}
+    </div>      {% comment %}container-fluid{% endcomment %}
+
+    <div id="homepage_footer" class="container-fluid">
+        <div class="row homepage-footer-contact">
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-6 col-6">
+                <div class="ml-xl-5 ml-lg-5 ml-md-5 ml-sm-3 ml-0">
+                    <div class="mt-xl-3 ml-xl-3 mt-lg-3 ml-lg-3 mt-md-3 ml-md-3 mt-sm-3 ml-sm-3 mt-1 ml-1 footer-contact">
+                        Contact me:
+                    </div>
+                    <div class="mt-xl-3 ml-xl-3 mt-lg-3 ml-lg-3 mt-md-3 ml-md-3 mt-sm-3 ml-sm-3 mt-1 ml-1 footer-contact-link">
+                        QQ: 826258439
+                    </div>
+                    <div class="mt-xl-3 ml-xl-3 mt-lg-3 ml-lg-3 mt-md-3 ml-md-3 mt-sm-3 ml-sm-3 mt-1 ml-1 footer-contact-link">
+                        Wechat: yehaofellow
+                    </div>
+                    <div class="mt-xl-3 ml-xl-3 mt-lg-3 ml-lg-3 mt-md-3 ml-md-3 mt-sm-3 ml-sm-3 mt-1 ml-1 footer-contact-link">
+                        E-mail: yehaoo123@163.com
+                    </div>
+                </div>
+            </div>
+{#            <div class="col-1" style="background-color: white"></div>#}
+            <div class="col-xl-5 col-lg-5 col-md-5 col-sm-6 col-6 footer-map-p">
+                <div class="mr-1 footer-map">
+                    <img src="/static/homepage/map.jpg" class="footer-img">
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="height: 20px;background-color: #83a8ad;">
+            <span style="font-size: 13px;color: #322469;font-weight: 400;font-style: italic;">Hacker Ye © 2018-2019 at CAU</span>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block js_overall %}{% endblock %}
+
+{% block js_inner %}
+    // 在$(function(){ })中执行，等价于$().ready(function(){ })或$(document).ready(function(){ })
+    // 页面框架加载完成（html和css，不包括图片等资源）后就解析内部的代码
+    // 若在js代码在window.onload = function(){ }或$(window).on('load',function(){ })表示页面的所有资源都加载好后
+    // 才开始解析内部的JS代码
+    // 若代码直接在script标签中，会从上往下按顺序执行
+    // 所以JS执行顺序是：script - ready - load
+    $('#status').delay(300).fadeOut();
+    $('#preloader').delay(300).fadeOut('slow');
+    $('body').delay(550).css({'overflow':'visible'});
+
+    $("#about_menu").attr('href','#homepage_footer');
+{% endblock %}

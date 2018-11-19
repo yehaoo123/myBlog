@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Backend Manage.</title>
+    <link rel="stylesheet" href="/static/sidebar_plugin/css/normalize.css" />
+    <link rel="stylesheet" href="/static/sidebar_plugin/css/demo.css" />
+    <link rel="stylesheet" href="/static/sidebar_plugin/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/sidebar_plugin/css/menu_sideslide.css" />
+    <link rel="stylesheet" href="/static/bootstrap-4.0/css/bootstrap.css" />
+    <link rel="stylesheet" href="/static/simditor-2.3.23/css/simditor.css" />
+{#    <link rel="stylesheet" href="/static/simditor-2.3.23/extension/html/simditor-html.css" media="screen" charset="utf-8" />#}
+    <style>
+        .icon-list a {
+            padding: 0.6rem;
+        }
+        .title_input {
+            height: 44px;
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            display: block;
+            outline: none;
+            background-color: transparent;
+            color: black;
+            border: 0;
+            position: relative;
+        }
+        .title_input::-webkit-input-placeholder {
+            color: #b3b3b3;
+        }
+        .title_input::-ms-input-placeholder {
+            color: #b3b3b3;
+        }
+        .title_input::-moz-placeholder {
+            color: #b3b3b3;
+        }
+        .simditor {
+            border: 0;
+        }
+        .simditor .simditor-wrapper {
+            background-color: transparent;
+        }
+        .simditor .simditor-toolbar {
+            background-color: #f8f9fa !important;
+            border-top: 1px solid #c5c5c5;
+            border-bottom: 1px solid #c5c5c5;
+        }
+        .simditor .simditor-body {
+            min-height: 500px;
+        }
+        .content-wrap {
+            overflow-y: auto;
+        }
+        .content::before {
+            z-index: 999;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        .simditor-toolbar {
+            position: sticky;
+            z-index: 997!important;
+            top: 49px!important;
+        }
+        #tool_top {
+            z-index: 998!important;
+            height: 50px;
+            left: 3%;
+            right: 3%;
+            background-color: #f8f9fa !important;
+            border-bottom: 1px solid #c5c5c5;
+        }
+        .dropdown-toggle::after {
+            margin-left: 0.27em;
+            vertical-align: 0.145em;
+            border-top: 0.36em solid;
+        }
+        .label-select {
+            border: 0;
+            background-color: transparent;
+        }
+        .label-select:hover {
+            background-color: transparent;
+            color: #007bff;
+        }
+        .label-select:focus {
+            background-color: transparent !important;
+            color: #007bff !important;
+            box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.5) !important;
+        }
+        .show > .btn-outline-primary.dropdown-toggle {
+            color: #007bff;
+            background-color: transparent;
+            box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.5);
+        }
+        #tool_top .dropdown-item:active {
+            color: white;
+        }
+    </style>
+    <!--[if IE]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container-slide bg-light">
+        <div class="menu-wrap">
+            <nav class="menu">
+                <div class="icon-list pl-xl-3 pl-lg-3 pl-md-3 pl-sm-3 pl-1">
+                    <a href="/manage/"><i class="fa fa-fw fa-flag-o"></i><span>个人管理</span></a>
+                    <a href="/manage/articles/"><i class="fa fa-fw fa-star-o"></i><span>文章管理</span></a>
+                    <a href="/manage/labels"><i class="fa fa-fw fa-paperclip"></i><span>标签管理</span></a>
+                    <a href="/manage/publish/"><i class="fa fa-fw fa-pencil-square-o"></i><span>文章发布</span></a>
+                    <a href="/manage/exit/"><i class="fa fa-fw fa-sign-out"></i><span>退出登录</span></a>
+                </div>
+            </nav>
+            <button class="close-button" id="close-button">Close Menu</button>
+        </div>
+
+        <button class="menu-button m-xl-4 m-lg-3 m-md-2 m-sm-2 m-2" id="open-button" style="outline: none;">Open Menu</button>
+
+        <div class="content-wrap">
+            <div class="content bg-light" style="margin-top: 50px;">
+
+                <div class="container">
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-7 col-lg-7 col-md-9 col-sm-11 col-12" >
+
+                            <form>
+                                {% csrf_token %}
+                                <div class="form-row form-group">
+                                    <input autofocus name="article_title" type="text" class="w-100 mt-3 title_input" placeholder="请输入标题（最多20个字符）">
+                                </div>
+                                <div id="editor_wrapper" class="form-row form-group">
+                                    <textarea name="article_content" id="editor"></textarea>
+                                </div>
+                                <div id="tool_top" class="fixed-top">
+                                    <div class="row h-100 justify-content-between">
+                                        <div class="col-xl-2 col-lg-2 col-md-3 col-sm-3 col-3 pr-xl-5 pr-lg-3 pr-md-5 pr-sm-0 pr-1 align-self-center" style="text-align: right; overflow: hidden;">
+                                            <img src="/static/img/logo2.jpg" class="mr-xl-4" style="height: 44px;">
+                                        </div>
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-7 col-7 align-self-center" style="text-align: right;">
+
+                                            <div class="btn-group mr-xl-3 mr-lg-3 mr-md-3 mr-sm-3 mr-2">
+                                                <button id="article_label" type="button" style="width: fit-content" class="label-select pt-xl-1 pt-lg-1 pt-md-1 pt-sm-1 pt-0 pb-xl-1 pb-lg-1 pb-md-1 pb-sm-1 pb-0 pl-xl-3 pl-lg-3 pl-md-3 pl-sm-3 pl-1 pr-xl-3 pr-lg-3 pr-md-3 pr-sm-3 pr-1 btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">标签</button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item">HTML5</a>
+                                                    <a class="dropdown-item">CSS3</a>
+                                                    <a class="dropdown-item">JavaScript</a>
+{#                                                    <div class="dropdown-divider"></div>#}
+                                                    <a class="dropdown-item">Python</a>
+                                                    <a class="dropdown-item">Golang</a>
+                                                    <a class="dropdown-item">Linux</a>
+                                                    <a class="dropdown-item">Java</a>
+                                                </div>
+                                            </div>
+                                            <button id="submit_article" type="button" class="mr-xl-2 mr-lg-2 mr-md-2 mr-sm-2 mr-1 pt-xl-1 pt-lg-1 pt-md-1 pt-sm-1 pt-0 pb-xl-1 pb-lg-1 pb-md-1 pb-sm-1 pb-0 pl-xl-4 pl-lg-4 pl-md-4 pl-sm-4 pl-2 pr-xl-4 pr-lg-4 pr-md-4 pr-sm-4 pr-2 btn btn-outline-primary">发布</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Related demos -->
+            </div>
+
+        </div><!-- /content-wrap -->
+    </div><!-- /container-slide -->
+    <div id="info_error" class="alert alert-warning pl-5 pr-5" role="alert" style="display: none;position: fixed;top: 82%;left: 50%;margin-left: -97px;z-index: 1100;">
+        标题不能为空
+    </div>
+    <div id="info_success" class="alert alert-success pl-5 pr-5" role="alert" style="display: none;position: fixed;top: 82%;left: 50%;margin-left: -80px;z-index: 1100;">
+        发布成功
+    </div>
+    <script type="text/javascript" src="/static/jQuery-1.12.4/jQuery-1.12.4.js"></script>
+    <script type="text/javascript" src="/static/jQuery-cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/popper-1.12/popper-1.12.9.js"></script>
+    <script type="text/javascript" src="/static/bootstrap-4.0/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/sidebar_plugin/js/classie.js"></script>
+    <script type="text/javascript" src="/static/sidebar_plugin/js/main.js"></script>
+    <script type="text/javascript" src="/static/simditor-2.3.23/js/module.js"></script>
+    <script type="text/javascript" src="/static/simditor-2.3.23/js/hotkeys.js"></script>
+    <script type="text/javascript" src="/static/simditor-2.3.23/js/uploader.js"></script>
+    <script type="text/javascript" src="/static/simditor-2.3.23/js/simditor.js"></script>
+    <script type="text/javascript" src="/static/simditor-2.3.23/extension/mark/simditor-mark.js"></script>
+{#    <script src="https://cdn.rawgit.com/beautify-web/js-beautify/v1.8.8/js/lib/beautify-html.js"></script>#}
+{#    <script type="text/javascript" src="/static/simditor-2.3.23/extension/html/simditor-html.js"></script>#}
+
+    <script>
+        $(function () {
+            var editor = new Simditor({
+                textarea: $('#editor'),
+                placeholder: "你的认真，世界看得见。",
+                toolbar: ['title','bold','italic','underline','strikethrough','mark','fontScale','color','ol','ul','blockquote','code','table','link'
+                ,'image','hr','indent','outdent','alignment'],
+                defaultImage: '/static/simditor-2.3.21/img/placeholder.jpg',
+                upload: { url: '/manage/article_imgs/', params: {'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val() }, fileKey: 'upload_file', connectionCount: 10, leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'},
+                pasteImage: true,
+                cleanPaste: false,
+                imageButton:  ['upload'],
+                // toolbar: true,
+                // toolbarFloat: true,
+                // toolbarFloatOffset: 0,                  Top offset of the toolbar when fixed.
+                // toolbarHidden: false,                   Hide the toolbar. Can not work together with toolbarFloat.
+                // defaultImage: 'images/image.png',       Default image placeholder. Used when inserting pictures in Simditor.
+                // tabIndent: true,                        Use 'tab' key to make an indent.
+                // params: {},                             Insert a hidden input in textarea to store params (key-value pairs).
+                //                                         Usually used as the default params of the form. It will generate：
+                //                                         <input type="hidden" name="key" value="val" />
+                // upload: false,                          Accept false or key/value pairs. Extra options for uploading images:
+                //                                         url: upload api url; params: extra params sent to the server; fileKey: key of the file param;
+                //                                         connectionCount: how many images can be uploaded simultaneously;
+                //                                         leaveConfirm: messages will be shown if one leave the page while file is being uploaded;
+                //                                         JSON response after uploading complete...
+                // pasteImage: false,                      Support uploading by pasting images from the clipboard. Work together with upload and only supported by Firefox and Chrome.
+                // clearPaste: false,                      Remove all styles in paste content automatically.
+                // imageButton: ['upload', 'external'],    Insert images by uploading from the local computer or external links.
+                //                                         If both are enabled, Simditor will show a drop-down menu when click the image button.
+                // allowedTags: null,                      Tags that are allowed in Simditor. Default whitelist: xxx.
+                // allowedAttributes: null,                Whitelist of tag attributes. style attribute whitelist is defined in allowedStyles. Default whiteli
+                // allowedStyles: null,                    Inline style whitelist. Default whitelist: xxx.
+                // codeLanguages: null,                    A list of programming languages supported by code block. Default list: xxx.
+            });
+            $("#tool_top .dropdown-item").click(function () {
+                var choice = $(this).text();
+                $(this).parent().prev().text(choice);
+            });
+            $("#submit_article").click(function () {
+                var title = $("input[name='article_title']").val();
+                var simditor_content = $('.simditor-body').text();
+                var content = $('textarea').val();
+                var label = $("#article_label").text();
+                var rep = new RegExp("^["+String.fromCharCode(32)+String.fromCharCode(160)+"]*$");
+                if ( /^ *$/.test(title) ) {
+                    var alert = $('#info_error');
+                    alert.text('标题不能为空');
+                    alert.fadeIn('normal');
+                    alert.delay(1500).fadeOut('normal');
+                } else if ( rep.test(simditor_content) ) {
+                    var alert = $('#info_error');
+                    alert.text('内容不能为空');
+                    alert.fadeIn('normal');
+                    alert.delay(1500).fadeOut('normal');
+                } else if ( label.indexOf("标签") !== -1 ) {
+                    var alert = $('#info_error');
+                    alert.text('请选择标签');
+                    alert.fadeIn('normal');
+                    alert.delay(1500).fadeOut('normal');
+                } else {
+                    $.ajax({
+                        url: "/manage/publish/",
+                        type: "POST",
+                        data: {'title': title, 'content': content, 'label': label},
+                        headers: {'X-CSRFtoken': $.cookie('csrftoken') },
+                        dataType: 'JSON',
+                        success: function (res_dict) {
+                            var code = res_dict['state'];
+                            switch (code) {
+                                case 301:
+                                    var alert = $('#info_error');
+                                    alert.text('标题不能为空');
+                                    alert.fadeIn('normal');
+                                    alert.delay(1500).fadeOut('normal');
+                                    break;
+                                case 302:
+                                    var alert = $('#info_error');
+                                    alert.text('内容不能为空');
+                                    alert.fadeIn('normal');
+                                    alert.delay(1500).fadeOut('normal');
+                                    break;
+                                case 303:
+                                    var alert = $('#info_error');
+                                    alert.text('请选择标签');
+                                    alert.fadeIn('normal');
+                                    alert.delay(1500).fadeOut('normal');
+                                    break;
+                                case 200:
+                                    var alert = $('#info_success');
+                                    alert.text('发布成功！');
+                                    alert.fadeIn('normal');
+                                    setTimeout('location.reload()', 800);
+                                    break
+                            }
+                        },
+
+                    });
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
