@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="409d6836-3f1b-4312-b640-952e24deea4e" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
+=======
+    <list default="true" id="409d6836-3f1b-4312-b640-952e24deea4e" name="Default" comment="" />
+>>>>>>> parent of 40e8ab6... 5
 =======
     <list default="true" id="409d6836-3f1b-4312-b640-952e24deea4e" name="Default" comment="" />
 >>>>>>> parent of 40e8ab6... 5
@@ -66,6 +70,7 @@
             <state relative-caret-position="355">
               <caret line="229" column="23" selection-start-line="229" selection-start-column="23" selection-end-line="229" selection-end-column="23" />
 <<<<<<< HEAD
+<<<<<<< HEAD
             </state>
           </provider>
         </entry>
@@ -102,6 +107,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="325">
               <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+=======
+              <folding>
+                <element signature="e#0#35#0" expanded="true" />
+              </folding>
+>>>>>>> parent of 40e8ab6... 5
 =======
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -201,6 +211,7 @@
           <expand>
             <path>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <item name="myBlog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myBlog" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -225,6 +236,12 @@
 >>>>>>> parent of 40e8ab6... 5
             </path>
             <path>
+=======
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="myBlog" type="cbb8eebc:String" user="myBlog" />
+            </path>
+            <path>
+>>>>>>> parent of 40e8ab6... 5
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="myBlog" type="cbb8eebc:String" user="myBlog" />
               <item name="myBlog" type="cbb8eebc:String" user="myBlog" />
@@ -433,6 +450,7 @@
     <editor active="true" />
     <layout>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info anchor="bottom" id="TODO" order="7" weight="0.3283082" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" weight="0.5259631" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
@@ -447,10 +465,19 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" weight="0.27090302" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" />
+=======
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32943144" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50226927" side_tool="true" weight="0.27090302" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+>>>>>>> parent of 40e8ab6... 5
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.32943144" />
       <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4977307" weight="0.44816053" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49924356" weight="0.319398" />
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49881798" visible="true" weight="0.3237519" />
+<<<<<<< HEAD
+>>>>>>> parent of 40e8ab6... 5
+=======
 >>>>>>> parent of 40e8ab6... 5
       <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.2246596" />
@@ -632,6 +659,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myBlog/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="40" column="19" lean-forward="true" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/django/utils/safestring.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-125">
@@ -692,8 +726,11 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/apps/blog/templates/sa.html" />
 =======
+=======
+>>>>>>> parent of 40e8ab6... 5
     <entry file="file://$PROJECT_DIR$/apps/blog/templates/sa.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -823,6 +860,7 @@
         <state relative-caret-position="355">
           <caret line="229" column="23" selection-start-line="229" selection-start-column="23" selection-end-line="229" selection-end-column="23" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -884,6 +922,11 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+=======
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+>>>>>>> parent of 40e8ab6... 5
         </state>
       </provider>
     </entry>
