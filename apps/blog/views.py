@@ -170,3 +170,6 @@ class articleContent(View):
         article_content = models.articleContent.objects.filter(article_id_id=aid).first()
         return render(request,'article_view.html',{'article_info': article_info,
                                                    'article_content': article_content})
+
+def hxy(request):
+    return render(request, 'hxy.html')

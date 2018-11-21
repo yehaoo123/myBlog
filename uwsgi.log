@@ -1,0 +1,88 @@
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Nov 21 19:30:01 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-11) on 21 November 2018 06:01:34
+os: Linux-3.10.0-514.26.2.el7.x86_64 #1 SMP Tue Jul 4 15:04:05 UTC 2017
+nodename: iz2ze17v57iiojyj4vobhlz
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /application/myBlog
+writing pidfile to /application/myBlog/uwsgi.pid
+detected binary path: /root/envs/django-myblog/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /application/myBlog
+your processes number limit is 7277
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 172.16.48.75:52113 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.1 (default, Nov 20 2018, 11:28:06)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)]
+Python main interpreter initialized at 0x13edeb0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x13edeb0 pid: 16074 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 16074)
+spawned uWSGI worker 1 (pid: 16129, cores: 2)
+[pid: 16129|app: 0|req: 1/1] 1.202.187.127 () {44 vars in 844 bytes} [Wed Nov 21 11:30:48 2018] GET / => generated 12677 bytes in 75 msecs (HTTP/1.1 200) 3 headers in 111 bytes (1 switches on core 0)
+[pid: 16129|app: 0|req: 2/2] 176.98.218.114 () {32 vars in 454 bytes} [Wed Nov 21 11:41:29 2018] GET / => generated 12677 bytes in 4 msecs (HTTP/1.1 200) 3 headers in 111 bytes (1 switches on core 1)
+[pid: 16129|app: 0|req: 3/3] 80.82.70.187 () {32 vars in 421 bytes} [Wed Nov 21 12:24:57 2018] GET /cache/global/img/gs.gif => generated 97 bytes in 7 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 16129|app: 0|req: 4/4] 139.162.88.63 () {32 vars in 408 bytes} [Wed Nov 21 12:43:07 2018] GET /echo.php?info=1234567890 => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 1)
+[pid: 16129|app: 0|req: 5/5] 81.165.235.137 () {32 vars in 345 bytes} [Wed Nov 21 12:57:44 2018] GET / => generated 31777 bytes in 13 msecs (HTTP/1.1 200) 3 headers in 111 bytes (1 switches on core 1)
+...gracefully killing workers...
+Gracefully killing worker 1 (pid: 16129)...
+worker 1 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /application/myBlog
+closing all non-uwsgi socket fds > 2 (max_fd = 65535)...
+found fd 3 mapped to socket 0 (172.16.48.75:52113)
+running /root/envs/django-myblog/bin/uwsgi
+[uWSGI] getting INI configuration from myBlog/uwsgi.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Wed Nov 21 12:58:41 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-11) on 21 November 2018 06:01:34
+os: Linux-3.10.0-514.26.2.el7.x86_64 #1 SMP Tue Jul 4 15:04:05 UTC 2017
+nodename: iz2ze17v57iiojyj4vobhlz
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /application/myBlog
+detected binary path: /root/envs/django-myblog/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /application/myBlog
+your processes number limit is 7277
+your memory page size is 4096 bytes
+detected max file descriptor number: 65535
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited INET address 172.16.48.75:52113 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.7.1 (default, Nov 20 2018, 11:28:06)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-11)]
+Python main interpreter initialized at 0x13ab8d0
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+python threads support enabled
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 166752 bytes (162 KB) for 2 cores
+*** Operational MODE: threaded ***
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x13ab8d0 pid: 16074 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 16074)
+spawned uWSGI worker 1 (pid: 19729, cores: 2)
+[pid: 19729|app: 0|req: 1/1] 202.112.174.153 () {44 vars in 846 bytes} [Wed Nov 21 12:58:46 2018] GET / => generated 31777 bytes in 95 msecs (HTTP/1.1 200) 3 headers in 111 bytes (1 switches on core 0)
