@@ -25,5 +25,4 @@ urlpatterns = [
     re_path('^(?P<type>)(?P<page>\d*)$', blog_view.homepage.as_view()),
     path('blog/', include('apps.blog.urls')),
     path('manage/', include('apps.backend.urls')),
-    path('hxy.html', blog_view.hxy),
 ]
