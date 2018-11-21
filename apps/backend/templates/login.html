@@ -72,6 +72,7 @@
                     </div>
 
                     <form id="login_form" class="needs-validation pl-2 pr-2" method="post" novalidate>
+			{% csrf_token %}
                         <div class="form-row form-group justify-content-center">
                             <div class="col-xl-9 col-lg-9 col-md-10 col-sm-10 col-11">
 
@@ -155,7 +156,7 @@
 
     </div>
 
-    <script type="text/javascript" src="/static/jQuery-1.12.4/jQuery-1.12.4.js"></script>
+    <script type="text/javascript" src="/static/jQuery-1.12.4/jquery-1.12.4.js"></script>
     <script type="text/javascript" src="/static/jQuery-cookie/jquery.cookie.js"></script>
     <script type="text/javascript" src="/static/popper-1.12/popper-1.12.9.js"></script>
     <script type="text/javascript" src="/static/bootstrap-4.0/js/bootstrap.js"></script>
@@ -224,7 +225,7 @@
                                     break;
                                 case '406':
                                     console.log("用户名和密码格式错误");
-                                    var tooltips = $(".form-control").siblings().filter("[data-invalid]");
+                                   var tooltips = $(".form-control").siblings().filter("[data-invalid]");
                                     tooltips.each(function () {
                                         var invalid_info = $(this).attr("data-invalid");
                                         $(this).text(invalid_info);

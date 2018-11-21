@@ -244,7 +244,8 @@ def article_imgs(request):
                 part1 = time.strftime("%Y%m%d_%H%M%S_", time.localtime())
                 part2 = str(random.randint(0,1000) )
                 filename = user + "_article_" + part1 + part2 + ".jpg"
-                path = os.path.join('static','upload','img', filename)
+                # path = os.path.join('static','upload','img', filename)
+                path = os.path.join('/var','web','myBlog','static','upload','img',filename)
                 res_path = "/static/upload/img/" + filename
                 if not os.path.exists(path):
                     break
